@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,3 +128,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Adding Codespace Django REST API endpoint suffix
+
+# Update ALLOWED_HOSTS to include Codespace-specific host
+CODESPACE_NAME = os.getenv('CODESPACE_NAME')
+if CODESPACE_NAME:
+    ALLOWED_HOSTS.append(f"{CODESPACE_NAME}-8000.preview.app.github.dev")
+
+# Adding CORS settings for Codespace
+CORS_ALLOWED_ORIGINS = [
+    f"https://{CODESPACE_NAME}-8000.preview.app.github.dev"
+] if CODESPACE_NAME else []
