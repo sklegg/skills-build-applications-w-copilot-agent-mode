@@ -131,12 +131,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Adding Codespace Django REST API endpoint suffix
 
-# Update ALLOWED_HOSTS to include Codespace-specific host
-CODESPACE_NAME = os.getenv('CODESPACE_NAME')
-if CODESPACE_NAME:
-    ALLOWED_HOSTS.append(f"{CODESPACE_NAME}-8000.preview.app.github.dev")
+
+ALLOWED_HOSTS.append(f"https://special-orbit-vx4rv9v4jfw5xw-8000.app.github.dev")
 
 # Adding CORS settings for Codespace
 CORS_ALLOWED_ORIGINS = [
-    f"https://{CODESPACE_NAME}-8000.preview.app.github.dev"
-] if CODESPACE_NAME else []
+    "https://special-orbit-vx4rv9v4jfw5xw-8000.app.github.dev"
+]
